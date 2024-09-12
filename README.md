@@ -16,12 +16,15 @@ The website is created using the [index.html](https://github.com/EdGonz44/leafle
 The project repository should have the following structure:
 
 ```plaintext
-belly-button-challenge/
+leaflet-challenge
 │
 ├── static/js
-|   ├── app.js
+|   ├── css
+|       ├── css.style
+|   ├── js
+|       ├── app.js
 ├── README.md
-├──index.html
-└──samples.json
+└──index.html
+
 
 ```
