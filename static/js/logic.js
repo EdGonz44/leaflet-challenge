@@ -20,7 +20,6 @@ let myMap = L.map("map", {
 d3.json(queryUrl).then(function (data) {
     // Make data into a data.features object and send to createFeatures function.
     createFeatures(data.features)
-    // console.log(data.features);
 });
 
 function depthColor(depth) {
@@ -32,11 +31,15 @@ function depthColor(depth) {
     else  return "red";
 };
 
+// Function to convert magnitude to a positive radius
 function magnitudeToRadius(magnitude) {
     const minMag = 1; // Minimum magnitude to prevent negative or zero radii
     const maxMag = 10; // Maximum magnitude for scaling purposes
     const minRadius = 100; // Minimum radius in pixels or meters
     const maxRadius = 1000; // Maximum radius in pixels or meters
+
+    // Convert negative magnitudes to positive
+    magnitude = Math.abs(magnitude);
 
     // Ensure magnitude is within the expected range
     magnitude = Math.max(magnitude, minMag);
@@ -53,9 +56,8 @@ function createFeatures(features) {
         L.circle(features[i].geometry.coordinates.slice(0,2).reverse(), {
             fillOpacity: 0.75,
             color: depthColor(features[i].geometry.coordinates[2]),
-            // fillColor: depthColor(features[i].geometry.coordinates[2]),
             // Adjust the radius.
-            radius: magnitudeToRadius(features[i].properties.mag) * 10
+            radius: magnitudeToRadius(features[i].properties.mag) * 100
             }).bindPopup(`<h3>${features[i].properties.place}</h3> <hr> <p>Magnitude: ${(features[i].properties.mag)} <br />
             Location: ${(features[i].geometry.coordinates.slice(0,2).reverse())} <br />
              Depth: ${(features[i].geometry.coordinates[2])}</p>`).addTo(myMap);
