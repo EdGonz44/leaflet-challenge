@@ -25,10 +25,10 @@ d3.json(queryUrl).then(function (data) {
 
 function depthColor(depth) {
     if (depth <= 10) return "Green";
-    else if (depth <= 30) return "light green";
+    else if (depth <= 30) return "greenyellow";
     else if (depth <= 50) return "yellow";
     else if (depth <= 70) return "orange";
-    else if (depth <= 90) return "salmon";
+    else if (depth <= 90) return "orangered";
     else  return "red";
 };
 
