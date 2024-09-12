@@ -13,7 +13,7 @@ html {
   text-align: center;
 }
 
-/* CSS from the leaflet-choropleth documentation */
+
 .legend {
   color: #555;
   padding: 6px 8px;
@@ -35,13 +35,7 @@ html {
   width: 30px;
   height: 22px;
 }
-.legend .min {
-  float: left;
-  padding-bottom: 5px;
-}
-.legend .max {
-  float: right;
-}
+
 
 h1 {
   text-align: center;

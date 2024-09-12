@@ -37,10 +37,6 @@ function createFeatures(features) {
     
     // console.log('Min:', Math.min(...features.properties.mag));
     for (let i = 0; i < features.length; i++) {
-        // console.log(features[i].geometry.coordinates[2]);
-        // console.log(features[i].properties.mag);
-        // console.log(features[i].geometry.coordinates.slice(0,2));
-        // console.log(features[i]);
         // Add circles to the map.
         L.circle(features[i].geometry.coordinates.slice(0,2).reverse(), {
             fillOpacity: 0.75,
@@ -48,7 +44,9 @@ function createFeatures(features) {
             // fillColor: depthColor(features[i].geometry.coordinates[2]),
             // Adjust the radius.
             radius: features[i].properties.mag * 10000
-            }).bindPopup(`<h3>${features[i].properties.place}</h3> <hr> <p>Time: ${new Date (features[i].properties.time)}</p>`).addTo(myMap);
+            }).bindPopup(`<h3>${features[i].properties.place}</h3> <hr> <p>Magnitude: ${(features[i].properties.mag)} <br />
+            Location: ${(features[i].geometry.coordinates.slice(0,2).reverse())} <br />
+             Depth: ${(features[i].geometry.coordinates[2])}</p>`).addTo(myMap);
         };
     };
 
@@ -75,48 +73,3 @@ legend.onAdd = function () {
 // Adding the legend to the map
 legend.addTo(myMap);
 
-
-
-
-
-
-
-    // var legend = L.control({position: 'bottomright'});
-
-    // legend.onAdd = function(map){
-    //     const div = L.DomUtil.create('div', 'info legend');
-    //     labels = ['-10-10', '10-30', '30-50', '50-70', '70-90', '90+']
-
-    //     return div;
-    // };
-
-    // legend.addTo(myMap);
-    // addLegend(
-    //     map,
-    //     position = "bottomleft",
-    //     pal,
-    //     values,
-    //     na.label = "NA",
-    //     bins = 7,
-    //     colors,
-    //     opacity = 0.5,
-    //     labels = NULL,
-    //     labFormat = labelFormat(),
-    //     title = NULL,
-    //     className = "info legend",
-    //     layerId = NULL,
-    //     group = NULL,
-    //     data = getMapData(map)
-    //   )
-      
-    //   labelFormat(
-    //     prefix = "",
-    //     suffix = "",
-    //     between = " &ndash; ",
-    //     digits = 3,
-    //     big.mark = ",",
-    //     transform = identity
-    //   )
-
-    
- 
