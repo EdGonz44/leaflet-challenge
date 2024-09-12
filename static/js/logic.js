@@ -32,6 +32,18 @@ function depthColor(depth) {
     else  return "red";
 };
 
+function magnitudeToRadius(magnitude) {
+    const minMag = 1; // Minimum magnitude to prevent negative or zero radii
+    const maxMag = 10; // Maximum magnitude for scaling purposes
+    const minRadius = 100; // Minimum radius in pixels or meters
+    const maxRadius = 1000; // Maximum radius in pixels or meters
+
+    // Ensure magnitude is within the expected range
+    magnitude = Math.max(magnitude, minMag);
+
+    // Scale magnitude to radius using logarithmic scaling
+    return Math.log(magnitude) / Math.log(maxMag) * (maxRadius - minRadius) + minRadius;
+}
 
 function createFeatures(features) {
     
@@ -43,7 +55,7 @@ function createFeatures(features) {
             color: depthColor(features[i].geometry.coordinates[2]),
             // fillColor: depthColor(features[i].geometry.coordinates[2]),
             // Adjust the radius.
-            radius: features[i].properties.mag * 10000
+            radius: magnitudeToRadius(features[i].properties.mag) * 10
             }).bindPopup(`<h3>${features[i].properties.place}</h3> <hr> <p>Magnitude: ${(features[i].properties.mag)} <br />
             Location: ${(features[i].geometry.coordinates.slice(0,2).reverse())} <br />
              Depth: ${(features[i].geometry.coordinates[2])}</p>`).addTo(myMap);
