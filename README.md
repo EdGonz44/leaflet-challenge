@@ -19,9 +19,9 @@ leaflet-challenge
 │
 ├── static/js
 |   ├── css
-|       ├── css.style
+|       ├── style.css
 |   ├── js
-|       ├── app.js
+|       ├── logic.js
 ├── README.md
 └──index.html
 
