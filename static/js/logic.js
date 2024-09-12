@@ -51,7 +51,72 @@ function createFeatures(features) {
             }).bindPopup(`<h3>${features[i].properties.place}</h3> <hr> <p>Time: ${new Date (features[i].properties.time)}</p>`).addTo(myMap);
         };
     };
-    
+
+// Set up the legend.
+let legend = L.control({ position: "bottomright" });
+
+legend.onAdd = function () {
+    let div = L.DomUtil.create("div", "info legend");
+    let labels = ['-10-10', '10-30', '30-50', '50-70', '70-90', '90+'];
+    let colors = ['green', 'greenyellow', 'yellow', 'orange', 'orangered', 'red'];
+
+    // Create a list for the legend items
+    let legendItems = labels.map((label, index) => {
+        return '<li style="background-color: ' + colors[index] + '"></li> ' + label;
+    }).join("<br>"); // Add <br> between items
+
+    // Add the legend title and items
+    div.innerHTML = '<h1>Depth of Earthquake</h1>' +
+                    '<ul>' + legendItems + '</ul>';
+
+    return div;
+};
+
+// Adding the legend to the map
+legend.addTo(myMap);
+
+
+
+
+
+
+
+    // var legend = L.control({position: 'bottomright'});
+
+    // legend.onAdd = function(map){
+    //     const div = L.DomUtil.create('div', 'info legend');
+    //     labels = ['-10-10', '10-30', '30-50', '50-70', '70-90', '90+']
+
+    //     return div;
+    // };
+
+    // legend.addTo(myMap);
+    // addLegend(
+    //     map,
+    //     position = "bottomleft",
+    //     pal,
+    //     values,
+    //     na.label = "NA",
+    //     bins = 7,
+    //     colors,
+    //     opacity = 0.5,
+    //     labels = NULL,
+    //     labFormat = labelFormat(),
+    //     title = NULL,
+    //     className = "info legend",
+    //     layerId = NULL,
+    //     group = NULL,
+    //     data = getMapData(map)
+    //   )
+      
+    //   labelFormat(
+    //     prefix = "",
+    //     suffix = "",
+    //     between = " &ndash; ",
+    //     digits = 3,
+    //     big.mark = ",",
+    //     transform = identity
+    //   )
 
     
  
